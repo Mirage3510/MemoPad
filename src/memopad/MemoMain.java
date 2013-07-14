@@ -70,6 +70,14 @@ public class MemoMain extends JFrame {
 			}
 		});
 		panel.add(button);
+		
+		JButton button_1 = new JButton("\u30AF\u30EA\u30A2");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textPane.setText("");	//TODO テキストクリア
+			}
+		});
+		panel.add(button_1);
 	}
 
 }
