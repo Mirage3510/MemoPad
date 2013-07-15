@@ -1,5 +1,7 @@
 package memopad;
 
+import io_text.GetPass;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -12,6 +14,7 @@ import javax.swing.JTextPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.*;
 
 public class MemoMain extends JFrame {
 
@@ -58,7 +61,16 @@ public class MemoMain extends JFrame {
 		JButton btnNewButton = new JButton("\u4FDD\u5B58");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textPane.setText("");	//TODO 保存処理内容　あとで変更
+				//TODO 保存処理内容　あとで変更
+				try{
+					GetPass md = new GetPass();
+					BufferedWriter bw = new BufferedWriter(new FileWriter(md.SHGetFolderPath() + "\\memo.txt"));
+					bw.write(textPane.getText().replace("\n", "\r\n"));
+					bw.flush();
+					bw.close();
+				}catch(IOException ex){
+					System.out.println("ファイルエラー");
+				}
 			}
 		});
 		panel.add(btnNewButton);
