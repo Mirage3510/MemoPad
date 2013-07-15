@@ -2,9 +2,7 @@ package memopad;
 
 import io_text.Pass;
 import io_text.Restore;
-
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -66,7 +64,7 @@ public class MemoMain extends JFrame {
 		JButton btnNewButton = new JButton("\u4FDD\u5B58");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO 保存処理
+				//保存処理
 				try{
 					BufferedWriter bw = new BufferedWriter(new FileWriter(filename));
 					bw.write(textPane.getText().replace("\n", "\r\n"));
@@ -82,8 +80,9 @@ public class MemoMain extends JFrame {
 		JButton button = new JButton("\u5FA9\u5143");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//復元処理
 				Restore restore = new Restore();
-				textPane.setText(restore.getRestore());	//TODO 復元処理
+				textPane.setText(restore.getRestore());
 			}
 		});
 		panel.add(button);
@@ -91,7 +90,7 @@ public class MemoMain extends JFrame {
 		JButton button_1 = new JButton("\u30AF\u30EA\u30A2");
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textPane.setText("");	//TODO テキストクリア
+				textPane.setText("");	//テキストクリア
 			}
 		});
 		panel.add(button_1);
