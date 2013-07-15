@@ -1,8 +1,8 @@
 package memopad;
 
-import io_text.GetPass;
+import io_text.Pass;
+import io_text.Restore;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -19,6 +19,8 @@ import java.io.*;
 public class MemoMain extends JFrame {
 
 	private JPanel contentPane;
+	Pass md = new Pass();
+	public final String filename = md.SHGetFolderPath() + "\\memo.txt";
 
 	/**
 	 * Launch the application.
@@ -54,6 +56,9 @@ public class MemoMain extends JFrame {
 		final JTextPane textPane = new JTextPane();
 		scrollPane.setViewportView(textPane);
 		
+		Restore restore = new Restore();
+		textPane.setText(restore.getRestore());
+		
 		JPanel panel = new JPanel();
 		contentPane.add(panel);
 		panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
@@ -61,10 +66,9 @@ public class MemoMain extends JFrame {
 		JButton btnNewButton = new JButton("\u4FDD\u5B58");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO 保存処理内容　あとで変更
+				//TODO 保存処理
 				try{
-					GetPass md = new GetPass();
-					BufferedWriter bw = new BufferedWriter(new FileWriter(md.SHGetFolderPath() + "\\memo.txt"));
+					BufferedWriter bw = new BufferedWriter(new FileWriter(filename));
 					bw.write(textPane.getText().replace("\n", "\r\n"));
 					bw.flush();
 					bw.close();
@@ -78,7 +82,8 @@ public class MemoMain extends JFrame {
 		JButton button = new JButton("\u5FA9\u5143");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textPane.setText("");	//TODO 復元処理内容　あとで変更
+				Restore restore = new Restore();
+				textPane.setText(restore.getRestore());	//TODO 復元処理
 			}
 		});
 		panel.add(button);
